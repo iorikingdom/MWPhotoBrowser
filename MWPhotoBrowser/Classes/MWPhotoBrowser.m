@@ -261,6 +261,12 @@
     } else {
         [items addObject:fixedSpace];
     }
+    
+    if (_enableGrid) {
+        [items addObject:fixedSpace];
+        _trashButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(removePhoto)];
+        [items addObject:_trashButton];
+    }
 
     // Middle - Nav
     if (_previousButton && _nextButton && numberOfPhotos > 1) {
@@ -1594,6 +1600,16 @@
     if ([photo underlyingImage]) {
         [self showProgressHUDWithMessage:[NSString stringWithFormat:@"%@\u2026" , NSLocalizedString(@"Saving", @"Displayed with ellipsis as 'Saving...' when an item is in the process of being saved")]];
         [self performSelector:@selector(actuallySavePhoto:) withObject:photo afterDelay:0];
+    }
+}
+
+-(void)removePhoto
+{
+    if ([self.delegate respondsToSelector:@selector(photoBrowser:actionButtonPressedForPhotoAtIndex:)]) {
+        
+        // Let delegate handle things
+        [self.delegate photoBrowser:self actionButtonPressedForPhotoAtIndex:_currentPageIndex];
+        
     }
 }
 
