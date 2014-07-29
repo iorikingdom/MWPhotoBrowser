@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-    s.name = 'MWPhotoBrowser'
+    s.name = 'MWPhotoBrowserEx'
     s.version = '1.4.0'
     s.license = 'MIT'
     s.summary = 'A simple iOS photo browser with optional grid ' \
@@ -13,22 +13,22 @@ Pod::Spec.new do |s|
                     'displayed. The browser can also be used to allow the ' \
                     'user to select one or more photos using either the ' \
                     'grid or main image view.'
-    s.screenshots = ['https://raw.github.com/mwaterfall/MWPhotoBrowser/' \
+    s.screenshots = ['https://raw.github.com/iorikingdom/MWPhotoBrowser/' \
                      'master/Preview/MWPhotoBrowser1.png',
-                     'https://raw.github.com/mwaterfall/MWPhotoBrowser/' \
+                     'https://raw.github.com/iorikingdom/MWPhotoBrowser/' \
                      'master/Preview/MWPhotoBrowser2.png',
-                     'https://raw.github.com/mwaterfall/MWPhotoBrowser/' \
+                     'https://raw.github.com/iorikingdom/MWPhotoBrowser/' \
                      'master/Preview/MWPhotoBrowser3.png',
-                     'https://raw.github.com/mwaterfall/MWPhotoBrowser/' \
+                     'https://raw.github.com/iorikingdom/MWPhotoBrowser/' \
                      'master/Preview/MWPhotoBrowser4.png',
-                     'https://raw.github.com/mwaterfall/MWPhotoBrowser/' \
+                     'https://raw.github.com/iorikingdom/MWPhotoBrowser/' \
                      'master/Preview/MWPhotoBrowser5.png',
-                     'https://raw.github.com/mwaterfall/MWPhotoBrowser/' \
+                     'https://raw.github.com/iorikingdom/MWPhotoBrowser/' \
                      'master/Preview/MWPhotoBrowser6.png']
-    s.homepage = 'https://github.com/mwaterfall/MWPhotoBrowser'
+    s.homepage = 'https://github.com/iorikingdom/MWPhotoBrowser'
     s.author = { 'Michael Waterfall' => 'michaelwaterfall@gmail.com' }
     s.source = {
-        :git => 'https://github.com/mwaterfall/MWPhotoBrowser.git',
+        :git => 'https://github.com/iorikingdom:/MWPhotoBrowser.git',
         :tag => '1.4.0'
     }
     s.platform = :ios, '5.1.1'
