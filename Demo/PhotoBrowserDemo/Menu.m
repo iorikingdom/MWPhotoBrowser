@@ -1039,6 +1039,7 @@
     browser.displayNavArrows = displayNavArrows;
     browser.displaySelectionButtons = displaySelectionButtons;
     browser.alwaysShowControls = displaySelectionButtons;
+    browser.displayTrashButton = TRUE;
     browser.zoomPhotosToFill = YES;
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_7_0
     browser.wantsFullScreenLayout = YES;
@@ -1150,6 +1151,15 @@
     NSLog(@"Did finish modal presentation");
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+- (void)photoBrowser:(MWPhotoBrowser *)photoBrowser trashButtonPressedForPhotoAtIndex:(NSUInteger)index {
+    
+    [_photos removeObjectAtIndex:index];
+    [_thumbs removeObjectAtIndex:index];
+    
+    [photoBrowser reloadData];
+}
+
 
 #pragma mark - Load Assets
 

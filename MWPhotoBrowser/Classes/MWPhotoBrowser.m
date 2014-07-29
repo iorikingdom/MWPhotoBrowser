@@ -67,6 +67,7 @@
     _previousPageIndex = NSUIntegerMax;
     _displayActionButton = YES;
     _displayNavArrows = NO;
+    _displayTrashButton = NO;
     _zoomPhotosToFill = YES;
     _performingLayout = NO; // Reset on view did appear
     _rotating = NO;
@@ -262,7 +263,7 @@
         [items addObject:fixedSpace];
     }
     
-    if (_enableGrid) {
+    if (_displayTrashButton) {
         [items addObject:fixedSpace];
         _trashButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(removePhoto)];
         [items addObject:_trashButton];
@@ -1603,14 +1604,34 @@
     }
 }
 
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    if ([self.delegate respondsToSelector:@selector(photoBrowser:trashButtonPressedForPhotoAtIndex:)]) {
+        [self.delegate photoBrowser:self trashButtonPressedForPhotoAtIndex:_currentPageIndex];
+    }
+    [UIView animateWithDuration:0.1 animations:^{
+        self.view.alpha = 1.0f;
+    }];
+    
+
+}
+
 -(void)removePhoto
 {
-    if ([self.delegate respondsToSelector:@selector(photoBrowser:actionButtonPressedForPhotoAtIndex:)]) {
-        
-        // Let delegate handle things
-        [self.delegate photoBrowser:self actionButtonPressedForPhotoAtIndex:_currentPageIndex];
-        
-    }
+
+    
+    CATransition *animation = [CATransition animation];
+    animation.type = @"suckEffect";
+    animation.duration = 0.5f;
+    animation.timingFunction = UIViewAnimationCurveEaseInOut;
+    animation.delegate = self;
+    
+    [UIView animateWithDuration:animation.duration animations:^{
+        self.view.alpha = 0.0f;
+    }];
+    
+    [self.view.layer addAnimation:animation forKey:@"transitionViewAnimation"];
+
 }
 
 - (void)actuallySavePhoto:(id<MWPhoto>)photo {
