@@ -1609,11 +1609,6 @@
     if ([self.delegate respondsToSelector:@selector(photoBrowser:trashButtonPressedForPhotoAtIndex:)]) {
         [self.delegate photoBrowser:self trashButtonPressedForPhotoAtIndex:_currentPageIndex];
     }
-    [UIView animateWithDuration:0.1 animations:^{
-        self.view.alpha = 1.0f;
-    }];
-    
-
 }
 
 -(void)removePhoto
