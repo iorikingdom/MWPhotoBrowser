@@ -1606,26 +1606,16 @@
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
-    if ([self.delegate respondsToSelector:@selector(photoBrowser:trashButtonPressedForPhotoAtIndex:)]) {
-        [self.delegate photoBrowser:self trashButtonPressedForPhotoAtIndex:_currentPageIndex];
-    }
+
 }
 
 -(void)removePhoto
 {
 
-    
-    CATransition *animation = [CATransition animation];
-    animation.type = @"suckEffect";
-    animation.duration = 0.5f;
-    animation.timingFunction = UIViewAnimationCurveEaseInOut;
-    animation.delegate = self;
-    
-    [UIView animateWithDuration:animation.duration animations:^{
-        self.view.alpha = 0.0f;
-    }];
-    
-    [self.view.layer addAnimation:animation forKey:@"transitionViewAnimation"];
+    if ([self.delegate respondsToSelector:@selector(photoBrowser:trashButtonPressedForPhotoAtIndex:)]) {
+        [self.delegate photoBrowser:self trashButtonPressedForPhotoAtIndex:_currentPageIndex];
+    }
+
 
 }
 
