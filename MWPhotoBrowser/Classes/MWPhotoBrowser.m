@@ -1611,7 +1611,10 @@
 
 -(void)removePhoto
 {
-
+    [_controlVisibilityTimer invalidate];
+    
+    _controlVisibilityTimer = [NSTimer scheduledTimerWithTimeInterval:self.delayToHideElements target:self selector:@selector(hideControls) userInfo:nil repeats:NO];
+    
     if ([self.delegate respondsToSelector:@selector(photoBrowser:trashButtonPressedForPhotoAtIndex:)]) {
         [self.delegate photoBrowser:self trashButtonPressedForPhotoAtIndex:_currentPageIndex];
     }
